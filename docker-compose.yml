@@ -34,7 +34,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      -sadds-network
+      - sadds-network
 
 volumes:
   mysql_data:
