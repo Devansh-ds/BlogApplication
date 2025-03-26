@@ -10,14 +10,11 @@ COPY . .
 # Give execute permissions to mvnw
 RUN chmod +x mvnw
 
-# Build the application inside the container
+# Build the application and create the JAR
 RUN ./mvnw clean package -DskipTests
-
-# Copy the JAR file from the target directory to the container
-COPY target/*.jar app.jar
 
 # Expose the application port
 EXPOSE 8080
 
 # Run the JAR file when the container starts
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "target/BlogBackend-0.0.1-SNAPSHOT.jar"]
