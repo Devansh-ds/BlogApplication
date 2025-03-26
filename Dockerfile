@@ -1,14 +1,20 @@
 # Use OpenJDK 17 as the base image
 FROM openjdk:17-jdk-slim
 
-# Set working directory inside the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the JAR file into the container
-COPY target/BlogBackend-0.0.1-SNAPSHOT.jar app.jar
+# Copy the project files into the container
+COPY . .
+
+# Build the application inside the container
+RUN ./mvnw clean package -DskipTests
+
+# Copy the JAR file from the target directory to the container
+COPY target/*.jar app.jar
 
 # Expose the application port
 EXPOSE 8080
 
-# Command to run the application
+# Run the JAR file when the container starts
 ENTRYPOINT ["java", "-jar", "app.jar"]
