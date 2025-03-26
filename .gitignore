@@ -15,7 +15,7 @@ mysql_data/
 .springBeans
 .sts4-cache
 
-.git
+.env
 
 ### IntelliJ IDEA ###
 .idea
