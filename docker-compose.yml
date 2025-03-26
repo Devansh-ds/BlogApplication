@@ -6,13 +6,15 @@ services:
     container_name: blog-app
     depends_on:
       - mysql
+    env_file:
+      - .env
     environment:
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_NAME: blog_db
-      DB_USERNAME: root
-      DB_PASSWORD: root
-      JWT_SECRET: b15f7819606774c89cbc1477c9dcbf149683af67ed2ca3e875718850c39330ce
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
       HUGGINGFACE_API_KEY: ${HUGGINGFACE_API_KEY}
     ports:
       - "8080:8080"
@@ -20,9 +22,11 @@ services:
     image: mysql
     container_name: blog-mysql
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: blog_db
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     ports:
       - "3306:3306"
     volumes:
