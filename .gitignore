@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+mysql_data/
+
 ### STS ###
 .apt_generated
 .classpath
@@ -13,6 +15,7 @@ target/
 .springBeans
 .sts4-cache
 
+.application.yml
 
 ### IntelliJ IDEA ###
 .idea
