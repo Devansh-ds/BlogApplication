@@ -24,7 +24,7 @@ public class ImageService {
     public List<ImageData> uploadImage(List<MultipartFile> file)
             throws IOException {
 
-        if (file.isEmpty()) {
+        if (file == null || file.isEmpty()) {
             return new ArrayList<ImageData>();
         }
 
@@ -78,7 +78,6 @@ public class ImageService {
             if (imageData.isEmpty()) {
                 throw new EntityNotFoundException("Image not found with name : " + oldImage.getName());
             }
-            System.out.println(oldImage.getId() + " : " + oldImage.getName());
             imageDataRepository.deleteById(oldImage.getId());
         });
 

@@ -2,6 +2,7 @@ package com.blog.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.hibernate.action.internal.EntityActionVetoException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -13,6 +14,11 @@ import java.util.HashMap;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+    }
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> handleEntityException(EntityNotFoundException e) {

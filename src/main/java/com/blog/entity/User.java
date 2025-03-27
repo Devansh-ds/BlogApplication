@@ -25,6 +25,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String fullname;
+
+    @Column(unique = true)
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
